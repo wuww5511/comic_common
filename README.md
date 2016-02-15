@@ -4,7 +4,7 @@
 使用方法：加载此模块即可
 
 ### ui.js
-**实现ui模块中常用方法，简化编写流程**
+**实现ui模块中常用方法**
 `__initEvent()`: 为整个ui模块绑定事件，代理子元素的事件。模块内子元素通过对应属性设置要执行的操作。操作与类的protected成员函数相对应。
 
     //js
@@ -37,3 +37,5 @@
     //html
     <div class="js-div"></div>
 
+**简化ui控制设置html，css的流程**
+[详情见demo](https://github.com/wuww5511/comic_common/blob/master/test/ui/demo.js)
