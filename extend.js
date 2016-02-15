@@ -13,7 +13,7 @@ define([
         
         _u._$merge(_pro, _opts);
         
-        if(!this.prototype.__init) this.prototype.__init = _f;
+        if(!_u._$isFunction(this.prototype.__init)) this.prototype.__init = _f;
         
         return _$$Sub;
     };
