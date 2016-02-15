@@ -1,6 +1,7 @@
 {
   "name": "comic_common",
   "homepage": "https://github.com/wuww5511/comic_common",
+  "version": "0.0.1",
   "authors": [
     "wuwweiwei <wuww5511@126.com>"
   ],
@@ -18,5 +19,10 @@
     "bower_components",
     "test",
     "tests"
-  ]
+  ],
+  "dependencies": {},
+  "devDependencies": {
+    "nej": "~0.2.6",
+    "jasmine-core": "jasmine#~2.4.1"
+  }
 }
