@@ -1,4 +1,6 @@
 # 基于NEJ的小模块
+**安装：** `bower install comic_common`
+
 ### extend.js
 **使类可以通过静态方法`_$getSub()`生成子类**
 使用方法：加载此模块即可
@@ -23,7 +25,7 @@
     //html
     <div data-click="action" data-mouseover="action">test</div>
     
-`__el`: 通过css类获取元素（只获取当前ui模块类的元素.如果存在多个，则获取第一个）
+`__el`: 通过css类获取元素（只获取当前ui模块内的元素.如果存在多个，则获取第一个）
 
 `__els`: 通过css类获取元素(返回数组)
 
@@ -38,4 +40,4 @@
     <div class="js-div"></div>
 
 **简化ui控制设置html，css的流程**
-[详情见demo](https://github.com/wuww5511/comic_common/blob/master/test/ui/demo.js)
+[代码样例](https://github.com/wuww5511/comic_common/blob/master/test/ui/demo.js)
