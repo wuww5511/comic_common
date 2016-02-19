@@ -19,7 +19,10 @@ define([
     
     _pro.__initXGui = function () {
         if(this.__html) this.__seed_html = _tpl._$addNodeTemplate(this.__html);
-        if(this.__css) this.__css = _el._$addStyle(this.__css);
+        if(this.__css && !this.constructor.__isCssInited) {
+            this.__css = _el._$addStyle(this.__css);
+            this.constructor.__isCssInited = true;
+        }
     };
     
     _pro.__initEvent = function (_type) {
@@ -86,6 +89,8 @@ define([
     };
     
     _p._$$Ui = _ui._$$Abstract._$getSub(_pro);
+    
+    _p._$$Ui.__isCssInited = false;
     
     return _p;
     

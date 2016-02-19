@@ -35,4 +35,8 @@ define([
     _$$UiTest._$allocate({
         parent:'container'
     });
+    
+    _$$UiTest._$allocate({
+        parent:'container'
+    });
 })
