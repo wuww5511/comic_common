@@ -25,6 +25,13 @@ define([
         }
     };
     
+    _pro.__init = function () {
+        this.__super();
+        if(this.__bd){
+            this.__body = this.__bd;
+        }
+    };
+    
     _pro.__initEvent = function (_type) {
         _type = _type || 'click';
         

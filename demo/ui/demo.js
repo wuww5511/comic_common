@@ -5,6 +5,7 @@ define([
 ], function (_ui, _html, _css, _p) {
     var _pro = {};
     
+    //ui模块控制的DOM动态生成
     _pro.__html = _html;
     
     _pro.__css = _css;

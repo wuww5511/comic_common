@@ -40,4 +40,4 @@
     <div class="js-div"></div>
 
 **简化ui控制设置html，css的流程**
-[代码样例](https://github.com/wuww5511/comic_common/blob/master/test/ui/demo.js)
+[代码样例](https://github.com/wuww5511/comic_common/tree/master/demo/ui)

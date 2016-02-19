@@ -36,7 +36,21 @@ define([
         parent:'container'
     });
     
-    _$$UiTest._$allocate({
-        parent:'container'
-    });
+    var _pro2 = {};
+    
+    _pro2.__bd = document.querySelector('#test');
+    
+    _pro2.__reset = function (_opts) {
+        this.__super(_opts);
+        this.__initEvent('click');
+    }
+    
+    _pro2.__alert = function () {
+        alert('lalla');
+    };
+    
+    var _$$UiTest2 = _ui._$$Ui._$getSub(_pro2);
+    
+    _$$UiTest2._$allocate();
+    
 })
