@@ -77,15 +77,16 @@ define([
     _pro.___getHandle = function (_type) {
         return function (_e) {
             _e = _e || window.event;
+            if (_e.stopPropagation) {
+                _e.stopPropagation();
+            } else
+                _e.cancelBubble = true;
             var _target = _e.target || _e.srcElement;
             var _attrName = 'data-' + _type;
             var _attr = _el._$attr(_target, _attrName);
             if(!_attr) return;
             this.__exec(_attr);
-            if (_e.stopPropagation) {
-                _e.stopPropagation();
-            } else
-                _e.cancelBubble = true;
+            
         }._$bind(this);
     };
     
