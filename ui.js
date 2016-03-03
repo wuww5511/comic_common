@@ -78,6 +78,11 @@ define([
         return function (_e) {
             _e = _e || window.event;
             _e.target = _e.target || _e.srcElement;
+            if (!_e.stopPropagation) {
+                _e.stopPropagation = function () {
+                    this.cancelBubble = true;
+                }
+            }
             var _opts = {
                 event: _e
             };
@@ -86,10 +91,6 @@ define([
             var _attr = _el._$attr(_target, _attrName);
             if(!_attr) return;
             this.__exec(_attr, _opts);
-            if (_e.stopPropagation) {
-                _e.stopPropagation();
-            } else
-                _e.cancelBubble = true;
             
         }._$bind(this);
     };
