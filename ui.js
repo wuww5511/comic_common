@@ -48,7 +48,7 @@ define([
         
     };
     
-    _pro.__exec = function (_str) {
+    _pro.__exec = function (_str, _opts) {
         if(_str.indexOf(" ")>=0){
             var _reg = /[a-zA-Z0-9$_,\|:]+/g;
             var _res = _str.match(_reg);
@@ -57,7 +57,7 @@ define([
             }._$bind(this));
             return;
         }
-        this.___execOne(_str);
+        this.___execOne(_str, _opts);
     };
     
     //通过class获取ui控件内的元素,获取第一个
@@ -77,22 +77,26 @@ define([
     _pro.___getHandle = function (_type) {
         return function (_e) {
             _e = _e || window.event;
+            _e.target = _e.target || _e.srcElement;
+            var _opts = {
+                event: _e
+            };
+            var _target = _e.target;
+            var _attrName = 'data-' + _type;
+            var _attr = _el._$attr(_target, _attrName);
+            if(!_attr) return;
+            this.__exec(_attr, _opts);
             if (_e.stopPropagation) {
                 _e.stopPropagation();
             } else
                 _e.cancelBubble = true;
-            var _target = _e.target || _e.srcElement;
-            var _attrName = 'data-' + _type;
-            var _attr = _el._$attr(_target, _attrName);
-            if(!_attr) return;
-            this.__exec(_attr);
             
         }._$bind(this);
     };
     
-    _pro.___execOne = function (_str) {
+    _pro.___execOne = function (_str, _opts) {
         if(_u._$isFunction(this["__"+_str])){
-            this["__"+_str].call(this, null);
+            this["__"+_str].call(this, _opts);
         }
     };
     
