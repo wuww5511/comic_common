@@ -7,28 +7,16 @@
 
 define([
     './extend.js'
-
-
     
     , 'base/element'
-
-
     
     , 'ui/base'
-
-
     
     , 'util/event'
-
-
     
     , 'util/template/tpl'
-
-
     
     , 'util/template/jst'
-
-
     
     , 'base/util'
 ], function (_extend, _el, _ui, _event, _tpl, _jst, _u, _p, _o, _f) {
@@ -114,7 +102,7 @@ define([
             _e.target = _e.target || _e.srcElement;
             if (!_e.stopPropagation) {
                 _e.stopPropagation = function () {
-                    this.cancelBubble = true;
+                    _e.cancelBubble = true;
                 }
             }
             var _opts = {
@@ -123,16 +111,15 @@ define([
 
             var _attrName = 'data-' + _type
                 , _attr;
-            /*var _target = _e.target;
-           
-            var _attr = _el._$attr(_target, _attrName);
-            if(!_attr) return;
-            this.__exec(_attr, _opts);*/
+
             var _tmp = _e.target;
             while (this.__isLe(_tmp, this.__body)) {
                 _attr = _el._$attr(_tmp, _attrName);
-                if (_attr)
+                if (_attr) {
+                    _opts.event.currentTarget = _tmp;
                     this.__exec(_attr, _opts);
+                }
+
                 if (_opts.stop) break;
                 _tmp = _tmp.parentNode;
             }
