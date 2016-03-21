@@ -1,30 +1,20 @@
 <p>
-    <button data-click="a1 a2">
-        button1
+    <button data-click="a2" class="js-test">
+        按钮1：点击删除按钮2
     </button>
 </p>
 <p>
-    <button data-mouseover="a2" class="js-btn">
-        button1
+    <button data-mouseover="a1" class="js-btn js-test">
+        按钮2：当mouseover时输出信息
     </button>
 </p>
 <p>
-    <button>
-        button1
+    <button class="js-test" data-click="getElInCache">
+        按钮3：点击输出所有test按钮（使用缓存）
     </button>
 </p>
 <p>
-    <button>
-        button1
-    </button>
-</p>
-<p>
-    <button>
-        button1
-    </button>
-</p>
-<p>
-    <button>
-        button1
+    <button class="js-test" data-click="getEl">
+        按钮4：点击输出所有test按钮（刷新缓存）
     </button>
 </p>

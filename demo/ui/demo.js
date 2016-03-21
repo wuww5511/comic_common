@@ -16,12 +16,20 @@ define([
     };
     
     _pro.__a1 = function () {
-        console.log('a1');
+        console.log("a1");
     };
     
     _pro.__a2 = function () {
         var _btn = this.__el('btn');
         _btn.parentNode.removeChild(_btn);
+    };
+    
+    _pro.__getEl = function () {
+        console.log(this.__els('test', true));
+    };
+    
+    _pro.__getElInCache = function () {
+        console.log(this.__els('test'));
     };
     
     var _$$UiTest = _ui._$$Ui._$getSub(_pro);

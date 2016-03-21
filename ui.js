@@ -32,6 +32,7 @@ define([
     };
 
     _pro.__init = function () {
+        this.___cache = {};
         this.__super();
         if (this.__bd) {
             this.__body = this.__bd;
@@ -67,16 +68,24 @@ define([
     };
 
     //通过class获取ui控件内的元素,获取第一个
-    _pro.__el = function (_str) {
-        return this.__els(_str)[0];
+    _pro.__el = function (_str, _refresh) {
+        return this.__els(_str, _refresh)[0];
     };
 
-    //通过class获取ui控件内的元素,获取数组
-    _pro.__els = function (_str) {
+    //通过class获取ui控件内的元素,获取数组;_refresh为true时刷新缓存。
+    _pro.__els = function (_str, _refresh) {
+        
+        if(!this.___cache.el) this.___cache.el = {};
+        
+        if(this.___cache.el[_str] && !_refresh) return this.___cache.el[_str];
+        
         var _pre = 'js-'
             , _clazz = _pre + _str;
         var _res = _el._$getByClassName(this.__body, _clazz);
-        return _res;
+        
+        this.___cache.el[_str] = _res;
+        
+        return this.___cache.el[_str];
 
     };
 
@@ -131,6 +140,11 @@ define([
         if (_u._$isFunction(this["__" + _str])) {
             this["__" + _str].call(this, _opts);
         }
+    };
+    
+    _pro.__destroy = function () {
+        this.__super();
+        this.___cache = {};
     };
 
 
