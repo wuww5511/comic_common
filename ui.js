@@ -118,11 +118,19 @@ define([
         return function (_e) {
             _e = _e || window.event;
             _e.target = _e.target || _e.srcElement;
+            
             if (!_e.stopPropagation) {
                 _e.stopPropagation = function () {
                     _e.cancelBubble = true;
                 }
             }
+            
+            if(!_e.preventDefault){
+                _e.preventDefault = function () {
+                    _e.returnValue = false;
+                };
+            }
+            
             var _opts = {
                 event: _e
             };
