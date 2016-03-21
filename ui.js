@@ -146,8 +146,18 @@ define([
     };
 
     _pro.___execOne = function (_str, _opts) {
-        if (_u._$isFunction(this["__" + _str])) {
-            this["__" + _str].call(this, _opts);
+        var _name = _str;
+        
+        _opts.args = [];
+        
+        if(_str.indexOf(":") > 0){
+            var _arr = _str.split(":");
+            _name = _arr[0];
+            _opts.args = _arr[1].split(',');
+        }
+        
+        if (_u._$isFunction(this["__" + _name])) {
+            this["__" + _name].call(this, _opts);
         }
     };
     

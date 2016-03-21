@@ -36,6 +36,10 @@ define([
         console.log(this.__el('body'));
     };
     
+    _pro.__alert = function (_opts) {
+        console.log(_opts.args.join("+"));
+    };
+    
     var _$$UiTest = _ui._$$Ui._$getSub(_pro);
     
     _$$UiTest._$allocate({
