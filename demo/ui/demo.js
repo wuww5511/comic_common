@@ -32,6 +32,10 @@ define([
         console.log(this.__els('test'));
     };
     
+    _pro.__getBody = function () {
+        console.log(this.__el('body'));
+    };
+    
     var _$$UiTest = _ui._$$Ui._$getSub(_pro);
     
     _$$UiTest._$allocate({

@@ -89,6 +89,9 @@ define([
             , _clazz = _pre + _str;
         var _res = _el._$getByClassName(this.__body, _clazz);
         
+        if(_el._$hasClassName(this.__body, _clazz))
+            _res.push(this.__body);
+        
         this.___cache.el[_str] = _res;
         
         return this.___cache.el[_str];
