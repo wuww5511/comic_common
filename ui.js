@@ -48,10 +48,16 @@ define([
             }._$bind(this));
             return;
         }
+        
+        if(!this.___cache.event) this.___cache.event = {};
+        
+        if(this.___cache.event[_type]) return;
 
         this.__doInitDomEvent([
             [this.__body, _type, this.___getHandle(_type)]
         ]);
+        
+        this.___cache.event[_type] = true;
 
     };
 
