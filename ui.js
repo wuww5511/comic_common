@@ -66,7 +66,7 @@ define([
             var _reg = /[a-zA-Z0-9$_,\|:]+/g;
             var _res = _str.match(_reg);
             _u._$forEach(_res, function (_str) {
-                this.__exec(_str);
+                this.__exec(_str, _opts);
             }._$bind(this));
             return;
         }
