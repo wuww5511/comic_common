@@ -113,26 +113,32 @@ define([
             return true;
         return this.__isChildOf(_target, _parent);
     };
+    
+    _pro.__doWithEvent = function (_e) {
+        _e = _e || window.event;
+        _e.target = _e.target || _e.srcElement;
+
+        if (!_e.stopPropagation) {
+            _e.stopPropagation = function () {
+                _e.cancelBubble = true;
+            }
+        }
+
+        if(!_e.preventDefault){
+            _e.preventDefault = function () {
+                _e.returnValue = false;
+            };
+        }
+        
+        return _e;
+    };
 
     _pro.___getHandle = function (_type) {
         return function (_e) {
-            _e = _e || window.event;
-            _e.target = _e.target || _e.srcElement;
             
-            if (!_e.stopPropagation) {
-                _e.stopPropagation = function () {
-                    _e.cancelBubble = true;
-                }
-            }
-            
-            if(!_e.preventDefault){
-                _e.preventDefault = function () {
-                    _e.returnValue = false;
-                };
-            }
             
             var _opts = {
-                event: _e
+                event: this.__doWithEvent(_e)
             };
 
             var _attrName = 'data-' + _type
@@ -142,7 +148,7 @@ define([
             while (this.__isLe(_tmp, this.__body)) {
                 _attr = _el._$attr(_tmp, _attrName);
                 if (_attr) {
-                    _opts.event.currentTarget = _tmp;
+                    _opts.event.current = _tmp;
                     this.__exec(_attr, _opts);
                 }
 
