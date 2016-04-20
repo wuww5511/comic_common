@@ -41,9 +41,16 @@ define([
     };
     
     _pro.__repaint = function () {
-        this._$clearEvent();
+        this.__onBeforeRepaint();
         this.__body.innerHTML = _jst._$get(this.__jstSeed, this.__data, this.__extends);
-        this.__search(this.__body, this.__onInitOne._$bind(this))
+    };
+    
+    _pro.__onBeforeRepaint = function () {
+        this._$clearEvent();
+    };
+    
+    _pro.__bindEvent = function () {
+        this.__search(this.__body, this.__onInitOne._$bind(this));
     };
     
     _pro.__onInitOne = function (_node) {
