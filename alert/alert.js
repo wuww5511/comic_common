@@ -8,14 +8,32 @@ define([
     
     _pro.__html = "<div style='position:fixed;top:0;left:0;bottom:0;right:0;z-index:999;'></div>";
     
+    _pro.__inner = "";
+    
     _pro.__reset = function (_opts) {
         this.__super(_opts);
         this.__pos = new _pos._$$Widget(this);
-        var _inner = _opts.inner || this.__inner || "";
-        this.__body.innerHTML = _inner;
-        this.__alert = this.__getFirstChild(this.__body);
+        this.__inner = _opts.inner || this.__inner;
+        if(typeof _inner === 'string'){
+            this.__body.innerHTML = _inner;
+            this.__alert = this.__getFirstChild(this.__body);
+        }
+        else{
+            this.__view = this.__inner._$allocate({
+                parent: this.__body,
+                data: _opts.data
+            });
+            
+            this.__alert = this.__view._$getBody();
+        }
+        
         this._$appendTo(document.body);
+        
         this._$resize();
+    };
+    
+    _pro._$getView = function () {
+        return this.__view || this.__alert;
     };
     
     _pro._$resize = function () {

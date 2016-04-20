@@ -26,10 +26,10 @@ define([
         console.log(_opts.event.currentTarget.className);
     };
     
-    var _$$Demo = _ui._$$Ui._$getSub(_pro);
+    var _$$Demo = _p._$$Ui = _ui._$$Ui._$getSub(_pro);
     
-    window.test = _$$Demo._$allocate({
+    /*window.test = _$$Demo._$allocate({
         
         clazz: "body"
-    })
+    })*/
 })
