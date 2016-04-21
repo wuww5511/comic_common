@@ -21,7 +21,10 @@ define([
         else{
             this.__view = this.__inner._$allocate({
                 parent: this.__body,
-                data: _opts.data
+                data: _opts.data,
+                onafterpaint: function () {
+                    this._$resize();
+                }._$bind(this)
             });
             
             this.__alert = this.__view._$getBody();
