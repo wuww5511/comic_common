@@ -31,6 +31,7 @@ define([
                 }._$bind(this)
             });
             
+            this.__alert = this.__view._$getBody();
         }
         
         this._$appendTo(document.body);
