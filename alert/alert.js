@@ -22,12 +22,15 @@ define([
             this.__view = this.__inner._$allocate({
                 parent: this.__body,
                 data: _opts.data,
-                onafterpaint: function () {
+                onafterpaint: function (_opts) {
+                    this.__alert = _opts.body;
                     this._$resize();
+                }._$bind(this),
+                onbeforedestroy: function () {
+                    this._$recycle();
                 }._$bind(this)
             });
             
-            this.__alert = this.__view._$getBody();
         }
         
         this._$appendTo(document.body);

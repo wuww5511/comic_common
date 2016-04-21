@@ -176,6 +176,7 @@ define([
     };
     
     _pro.__destroy = function () {
+        this._$dispatchEvent('onbeforedestroy');
         this.__super();
         this.___cache = {};
     };

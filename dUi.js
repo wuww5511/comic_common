@@ -42,11 +42,13 @@ define([
     _pro.__repaint = function () {
         this.__onBeforeRepaint();
         this.__body.innerHTML = _jst._$get(this.__jstSeed, this.__data, this.__extends);
-        this._$dispatchEvent('onafterpaint');
+        this._$dispatchEvent('onafterpaint', {
+            body: this.__body
+        });
     };
     
     _pro.__onBeforeRepaint = function () {
-        this._$clearEvent();
+        this.__doClearDomEvent();
     };
     
     _pro.__bindEvent = function () {
@@ -90,6 +92,6 @@ define([
         }
         
     };
-    
+      
     _p._$$Ui = _ui._$$Ui._$getSub(_pro);
 });

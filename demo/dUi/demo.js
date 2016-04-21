@@ -20,10 +20,12 @@ define([
     
     _pro.__repaint = function () {
         this.__super();
+        this.__bindEvent();
     };
     
     _pro.__a = function (_opts) {
-        console.log(_opts.event.currentTarget.className);
+        //console.log(_opts.event.currentTarget.className);
+        this._$recycle();
     };
     
     var _$$Demo = _p._$$Ui = _ui._$$Ui._$getSub(_pro);
