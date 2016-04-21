@@ -1,8 +1,9 @@
 define([
     './ui.js',
     'util/template/jst',
-    'base/element'
-], function (_ui, _jst, _e, _p) {
+    'base/element',
+    'base/util'
+], function (_ui, _jst, _e, _u, _p) {
     
     var _pro = {};
     
@@ -26,7 +27,7 @@ define([
      **/
     _pro.__reset = function (_opts) {
         this.__super(_opts);
-        this.__data = _opts.data || this.__data;
+        _u._$merge(this.__data, _opts.data||{});
         this.__jst = _opts.jst || this.__jst;
         this.__jstSeed = _jst._$add(this.__jst);
         this.__extends = _opts.extends || this.__extends;
@@ -34,9 +35,7 @@ define([
     };
     
     _pro._$setData = function (_o) {
-        for(var _i in _o){
-            this.__data[_i] = _o[_i];
-        }
+        _u._$merge(this.__data, _o);
         this.__repaint();
     };
     
