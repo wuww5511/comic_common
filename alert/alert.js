@@ -36,7 +36,7 @@ define([
         setTimeout(function () {
             this.__alert = this.__getFirstChild(this.__body);
             this._$resize();
-        }._bind(this));
+        }._$bind(this));
         
         this._$appendTo(document.body);
         
