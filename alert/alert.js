@@ -81,6 +81,7 @@ define([
     _pro.__destroy = function () {
         this.__super();
         this.__pos._$destroy();
+        this.__view && this.__view._$recycle();
     };
     
     _p._$$Alert = _ui._$$Ui._$getSub(_pro);
