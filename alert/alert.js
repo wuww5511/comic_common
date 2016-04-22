@@ -14,7 +14,7 @@ define([
         this.__super(_opts);
         this.__pos = new _pos._$$Widget(this);
         this.__inner = _opts.inner || this.__inner;
-        if(typeof _inner === 'string'){
+        if(typeof this.__inner === 'string'){
             this.__body.innerHTML = _inner;
             this.__alert = this.__getFirstChild(this.__body);
         }
