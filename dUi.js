@@ -49,6 +49,7 @@ define([
     
     _pro.__onBeforeRepaint = function () {
         this.__doClearDomEvent();
+        this.___cache = {};
     };
     
     _pro.__bindEvent = function () {
