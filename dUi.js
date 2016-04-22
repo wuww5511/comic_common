@@ -17,12 +17,12 @@ define([
     
     _pro.__data = {};
     
-    _pro.__extends = {};
+    _pro.__exts = {};
     
     /**
      * - opts {Object}
      *      - data {Object} 模块中的数据，被用于jst重新渲染
-     *      - extends {Object} jst重新渲染时用到的函数
+     *      - exts {Object} jst重新渲染时用到的函数
      *      - jst {String} jst模板
      **/
     _pro.__reset = function (_opts) {
@@ -30,7 +30,7 @@ define([
         _u._$merge(this.__data, _opts.data||{});
         this.__jst = _opts.jst || this.__jst;
         this.__jstSeed = _jst._$add(this.__jst);
-        this.__extends = _opts.extends || this.__extends;
+        this.__exts = _opts.exts || this.__exts;
         this.__repaint();
     };
     
@@ -41,7 +41,7 @@ define([
     
     _pro.__repaint = function () {
         this.__onBeforeRepaint();
-        this.__body.innerHTML = _jst._$get(this.__jstSeed, this.__data, this.__extends);
+        this.__body.innerHTML = _jst._$get(this.__jstSeed, this.__data, this.__exts);
         this._$dispatchEvent('onafterpaint', {
             body: this.__body
         });
