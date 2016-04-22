@@ -16,7 +16,6 @@ define([
         this.__inner = _opts.inner || this.__inner;
         if(typeof this.__inner === 'string'){
             this.__body.innerHTML = this.__inner;
-            this._$appendTo(document.body);
             this.__alert = this.__getFirstChild(this.__body);
         }
         else{
@@ -33,11 +32,9 @@ define([
             });
             
             this.__alert = this.__view._$getBody();
-            
-            this._$appendTo(document.body);
         }
         
-        
+        this._$appendTo(document.body);
         
         this._$resize();
     };
