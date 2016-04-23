@@ -12,7 +12,7 @@ define([
     
     _pro.__bd = document.getElementById('container');
     
-    _pro.__extends = {
+    _pro.__exts = {
         calcu: function (_value) {
             return _value + "calculated!!!";
         }

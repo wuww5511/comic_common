@@ -32,6 +32,7 @@ define([
     };
 
     _pro.__init = function () {
+        this.constructor.__isCssInited = false;
         this.___cache = {};
         this.__super();
         if (this.__bd) {
@@ -184,7 +185,6 @@ define([
 
     _p._$$Ui = _ui._$$Abstract._$getSub(_pro);
 
-    _p._$$Ui.__isCssInited = false;
 
     return _p;
 
