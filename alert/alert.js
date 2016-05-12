@@ -13,6 +13,12 @@ define([
         this.__pos = new _pos._$$Widget(this);
         this.__inner = _opts.inner || this.__inner;
         
+        if(typeof this.__inner === 'string') {
+            this.__inner = _ui._$$Ui._$getSub({
+                __html: this.__inner
+            });
+        }
+        
         this.__view = this.__inner._$allocate({
             parent: this.__body,
             data: _opts.data,
@@ -45,6 +51,10 @@ define([
             margin: _top + "px auto 0 auto"
         })
         
+    };
+    
+    _pro.__close = function () {
+        this.__view && this.__view._$destroy();
     };
         
     _pro.__destroy = function () {
