@@ -43,7 +43,7 @@ define([
     _pro.__reset = function (_opts) {
         this.__super(_opts);
         if(this.__bd) {
-            this.__parent = this.__body.parent;
+            this.__parent = this.__body.parentNode;
         }
     };
 
