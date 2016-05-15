@@ -37,6 +37,7 @@ define([
         this.__super();
         if (this.__bd) {
             this.__body = this.__bd;
+            this.__parent = this.__body.parentNode;
         }
     };
 
