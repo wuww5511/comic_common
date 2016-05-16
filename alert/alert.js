@@ -54,7 +54,7 @@ define([
     };
     
     _pro.__close = function () {
-        this.__view && this.__view._$destroy();
+        this.__view && this.__view._$recycle();
     };
         
     _pro.__destroy = function () {
