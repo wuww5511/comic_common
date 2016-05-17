@@ -90,3 +90,48 @@ UI类与UI的绑定只能在UI类生成时进行，不能在UI类实例化时进
 			_p._$$Ui = _ui._$$Ui._$getSub(_pro);
 			
 		})
+
+##成员方法
+### __initEvent(_events) => {void}
+**为__body绑定事件，在事件冒泡的过程中，依次检查每一个DOM节点，如果节点上含有data-{event}属性，则执行属性值所对应的方法**
+参数_events的值可以为undefined, 字符串, 字符串数组。
+
+值为undefined时，绑定click事件； `this.__initEvent()`
+
+值为字符串时绑定单个事件；`this.__initEvent('click')`
+
+值为字符串数组时同时绑定多个事件；`this.__initEvent(['click', 'mouseenter'])`
+
+**在对应的成员方法被执行时，会传入一个对象_opts作为参数**
+		
+		_opts
+			-event {Object} 事件对象
+				-target {Node} 触发事件的源节点
+				-preventDefault {Function} 阻止默认行为
+				-stopPropagation {Function} 阻止事件冒泡，__body父节点不会触发事件
+				-stop {Boolean} 将stop置为true， 当前节点的父节点将不会执行data-{event}中的方法
+				-current {Node} 添加了data-{event}的节点
+			-args {Array|String} 所有通过data-{event}传入的参数
+
+### __els(_selector, _refresh) => {Array|Node}
+**获取__body中的DOM节点**
+		
+		_selector {String} 筛选元素的字符串。如__els('btn') 会选取__body子节点中所有类似于`<div class="js-btn"></div>`的节点。第一次选取时会将结果记录在缓存中，下次会直接从缓存中提取结果。
+		_refresh {Boolean} 为true时会刷新缓存
+
+### __el(_selector, _refresh) => {Node}
+**__els(_selector, _refresh)[0]**
+
+### __isChildOf(_target, _parent) => {Boolean}
+**判断_target是否为_parent的子节点**
+		
+		_target {Node}
+		_parent {Node}
+
+### __isLe(_target, _parent) => {Node}
+**判断_target是否为_parent的子节点或者为同一节点**
+		
+		_target {Node}
+		_parent {Node}
+		
+
