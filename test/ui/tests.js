@@ -37,6 +37,18 @@ define([
                     if(_opts.args[1] == 'true'){
                         _opts.stop = true;
                     }
+                },
+                
+                __fs12: function (_opts) {
+                    _opts.event.current.style.fontSize = "12px";
+                },
+                
+                __ht: function (_opts) {
+                    _opts.event.current.style.height = _opts.args[0] + "px";
+                },
+                
+                __ht10: function (_opts) {
+                    _opts.event.current.style.height = "10px";
                 }
             });
             
@@ -82,7 +94,49 @@ define([
             _ins.__isLe(document.documentElement, _body).should.equal(false);
         });
         
-        it("事件代理测试:事件触发", function () {
+        it("成员方法__getProxyEvent测试", function () {
+            var _body = _ins.__el('body');
+            _ins.__getProxyEvent(_body, 'click').should.equal("fs:12");
+            _ins.__getProxyEvent(_body, 'mouseenter').should.equal("");
+        });
+        
+        it("成员方法__setProxyEvent测试", function () {
+            var _body = _ins.__el('body');
+            _ins.__getProxyEvent(_body, 'click').should.equal("fs:12");
+            _ins.__setProxyEvent(_body, 'click', "fs:14");
+            _ins.__getProxyEvent(_body, 'click').should.equal("fs:14");
+        });
+        
+        
+        //暂时不支持修改已有的值，todo~
+        it("成员方法__addProxyEvent测试", function () {
+            _ins.__initEvent('click');
+            var _empty = _ins.__el('empty');
+            
+            _ins.__getProxyEvent(_empty, 'click').should.equal("");
+            _empty.style.fontSize.should.equal("");
+            _empty.style.height.should.equal("");
+            
+            _ins.__addProxyEvent(_empty, 'click', 'fs:12');
+            _v._$dispatchEvent(_empty, 'click');
+            _empty.style.fontSize.should.equal("12px");
+            
+            _ins.__addProxyEvent(_empty, 'click', 'ht:10');
+            _v._$dispatchEvent(_empty, 'click');
+            _empty.style.height.should.equal("10px")
+        });
+        
+        it("事件代理测试：不带参数事件触发", function () {
+            _ins.__initEvent('click');
+            
+            _ins.__el('noArgs').style.fontSize.should.equal("");
+            
+            _v._$dispatchEvent(_ins.__el('noArgs'), 'click');
+            
+            _ins.__el('noArgs').style.fontSize.should.equal("12px");
+        });
+        
+        it("事件代理测试:带参数事件触发", function () {
             _ins.__initEvent('click');
             
             _ins.__el('body').style.fontSize.should.equal("");
@@ -90,6 +144,19 @@ define([
             _v._$dispatchEvent(_ins.__el('body'), 'click');
             
             _ins.__el('body').style.fontSize.should.equal("12px");
+            
+        });
+        
+        it("事件代理测试:多个事件触发", function () {
+            _ins.__initEvent('click');
+            
+            _ins.__el('multi').style.fontSize.should.equal("");
+            _ins.__el('multi').style.height.should.equal("");
+            
+            _v._$dispatchEvent(_ins.__el('multi'), 'click');
+            
+            _ins.__el('multi').style.fontSize.should.equal("12px");
+            _ins.__el('multi').style.height.should.equal("10px");
             
         });
         
@@ -120,6 +187,8 @@ define([
             
             _ins.__el('body').style.fontSize.should.equal("");
         });
+        
+        
     });
     
     mocha.run();

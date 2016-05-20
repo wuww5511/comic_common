@@ -134,4 +134,15 @@ UI类与UI的绑定只能在UI类生成时进行，不能在UI类实例化时进
 		_target {Node}
 		_parent {Node}
 		
-
+### __getProxyEvent(_ele, _event) => {String}
+**获取DOM节点_ele上的`data-{_event}`属性**
+        
+        _ele {Node}
+        _event {String}
+        
+### __setProxyEvent(_ele, _event, _action) => {void}
+**设置DOM节点_ele上的`data-{_event}`属性值为_action**
+        
+        _ele {Node}
+        _event {String}
+        _action {String}

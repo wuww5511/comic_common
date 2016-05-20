@@ -122,6 +122,20 @@ define([
         return this.__isChildOf(_target, _parent);
     };
     
+    _pro.__getProxyEvent = function (_ele, _event) {
+        return _el._$attr(_ele, "data-" + _event) || "";
+    };
+    
+    _pro.__setProxyEvent = function (_ele, _event, _action) {
+        _el._$attr(_ele, "data-" + _event, _action);
+    };
+    
+    //暂时不支持修改已有的值，todo~
+    _pro.__addProxyEvent = function (_ele, _event, _action) {
+        var _pre = this.__getProxyEvent(_ele, _event);
+        this.__setProxyEvent(_ele, _event, _action + " " + _pre);
+    };
+    
     _pro.__doWithEvent = function (_e) {
         _e = _e || window.event;
         _e.target = _e.target || _e.srcElement;
@@ -139,6 +153,21 @@ define([
         }
         
         return _e;
+    };
+    
+    //将一个action解析成对象; "a:1,2,3 b:2,3,4" => [{fn: 'a', args:['1','2','3']},{fn: 'b', args:['2','3','4']}]
+    _pro.__parseAction = function (_str) {
+        var _result = [];
+        
+        var _actions = /\S+/g.match(_str);
+        
+        _u._$forEach(_actions, function (_action) {
+            var _arr = _action.split(":");
+            var _fn = _arr[0];
+            var _args = _arr[1] && _arr;
+        });
+        
+        
     };
 
     _pro.___getHandle = function (_type) {
