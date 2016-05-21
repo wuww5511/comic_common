@@ -94,6 +94,15 @@ define([
             _ins.__isLe(document.documentElement, _body).should.equal(false);
         });
         
+        it("成员方法__parseAction测试", function () {
+            
+            _ins.__parseAction(" a:1,2,3 b c:1 ").should.deep.equal({
+                a: ['1', '2', '3'],
+                b: [],
+                c: ['1']
+            });
+        });
+        
         it("成员方法__getProxyEvent测试", function () {
             var _body = _ins.__el('body');
             _ins.__getProxyEvent(_body, 'click').should.equal("fs:12");
@@ -125,6 +134,7 @@ define([
             _v._$dispatchEvent(_empty, 'click');
             _empty.style.height.should.equal("10px")
         });
+    
         
         it("事件代理测试：不带参数事件触发", function () {
             _ins.__initEvent('click');

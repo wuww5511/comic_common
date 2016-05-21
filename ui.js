@@ -130,10 +130,15 @@ define([
         _el._$attr(_ele, "data-" + _event, _action);
     };
     
-    //暂时不支持修改已有的值，todo~
     _pro.__addProxyEvent = function (_ele, _event, _action) {
-        var _pre = this.__getProxyEvent(_ele, _event);
-        this.__setProxyEvent(_ele, _event, _action + " " + _pre);
+        var _toAdd = this.__parseAction(_action),
+            _pre = this.__parseAction(this.__getProxyEvent(_ele, _event));
+        
+        for(var _i in _toAdd) {
+            _pre[_i] = _toAdd[_i];
+        }
+        
+        this.__setProxyEvent(_ele, _event, this.__stringifyAction(_pre));
     };
     
     _pro.__doWithEvent = function (_e) {
@@ -155,19 +160,37 @@ define([
         return _e;
     };
     
-    //将一个action解析成对象; "a:1,2,3 b:2,3,4" => [{fn: 'a', args:['1','2','3']},{fn: 'b', args:['2','3','4']}]
+    //将一个action解析成对象; "a:1,2,3 b:2,3,4" => [{a:['1','2','3']},{b:['2','3','4']}]
     _pro.__parseAction = function (_str) {
-        var _result = [];
+        var _result = {};
         
-        var _actions = /\S+/g.match(_str);
+        var _actions = _str.match(/\S+/g);
         
         _u._$forEach(_actions, function (_action) {
             var _arr = _action.split(":");
             var _fn = _arr[0];
-            var _args = _arr[1] && _arr;
+            var _args = _arr[1] && _arr[1].split(',') || [];
+            
+            _result[_fn] = _args;
         });
         
+        return _result;
         
+    };
+    
+    _pro.__stringifyAction = function (_action) {
+        var _actions = [];
+        
+        for(var _i in _action) {
+            if(_action[_i].length == 0) {
+                _actions.push(_i);
+            }
+            else {
+                _actions.push(_i + ":" + _action[_i].join(','));
+            }
+        }
+        
+        return _actions.join(" ");
     };
 
     _pro.___getHandle = function (_type) {
