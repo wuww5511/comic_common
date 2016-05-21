@@ -117,7 +117,6 @@ define([
         });
         
         
-        //暂时不支持修改已有的值，todo~
         it("成员方法__addProxyEvent测试", function () {
             _ins.__initEvent('click');
             var _empty = _ins.__el('empty');
@@ -133,6 +132,12 @@ define([
             _ins.__addProxyEvent(_empty, 'click', 'ht:10');
             _v._$dispatchEvent(_empty, 'click');
             _empty.style.height.should.equal("10px")
+            
+            _ins.__addProxyEvent(_empty, 'click', 'ht:5 fs:14');
+            _v._$dispatchEvent(_empty, 'click');
+            _empty.style.height.should.equal("5px")
+            _empty.style.fontSize.should.equal("14px")
+            
         });
     
         

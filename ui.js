@@ -70,15 +70,13 @@ define([
     };
 
     _pro.__exec = function (_str, _opts) {
-        if (_str.indexOf(" ") >= 0) {
-            var _reg = /[a-zA-Z0-9$_,\|:]+/g;
-            var _res = _str.match(_reg);
-            _u._$forEach(_res, function (_str) {
-                this.__exec(_str, _opts);
-            }._$bind(this));
-            return;
+        
+        var _actions = this.__parseAction(_str);
+        
+        for(var _i in _actions) {
+            this.___execOne(_i, _actions[_i], _opts);
         }
-        this.___execOne(_str, _opts);
+        
     };
 
     //通过class获取ui控件内的元素,获取第一个
@@ -219,19 +217,12 @@ define([
         }._$bind(this);
     };
 
-    _pro.___execOne = function (_str, _opts) {
-        var _name = _str;
+    _pro.___execOne = function (_fn, _args, _opts) {
         
-        _opts.args = [];
+        _opts.args = _args;
         
-        if(_str.indexOf(":") > 0){
-            var _arr = _str.split(":");
-            _name = _arr[0];
-            _opts.args = _arr[1].split(',');
-        }
-        
-        if (_u._$isFunction(this["__" + _name])) {
-            this["__" + _name].call(this, _opts);
+        if (_u._$isFunction(this["__" + _fn])) {
+            this["__" + _fn].call(this, _opts);
         }
     };
     
