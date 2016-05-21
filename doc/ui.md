@@ -146,3 +146,25 @@ UI类与UI的绑定只能在UI类生成时进行，不能在UI类实例化时进
         _ele {Node}
         _event {String}
         _action {String}
+
+### __addProxyEvent(_ele, _event, _action) => {void}
+**为DOM节点_ele上的`data-{_event}`属性添加_action**
+
+        _ele {Node}
+        _event {String}
+        _action {String}
+        
+### __exec(_action, _opts) => {void}
+**对操作_action进行解析和执行**
+
+        _action {String} "func1:arg1,arg2 func2:arg1 func3"
+        _opts {Object}
+            -event {Object} 做过兼容处理的事件对象
+            
+### ___execOne(_fn, _args, _opts) => {void}
+**执行对应的成员函数**
+
+        _fn {String} 需要执行的成员函数名；如需执行成员函数__log, 传入"log"
+        _args {Array} 参数列表
+        _opts {Object}
+            -event {Object} 做过兼容处理的事件对象
