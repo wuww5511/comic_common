@@ -17,4 +17,15 @@ define([
         
         return _$$Sub;
     };
+    
+    //实现接口
+    Function.prototype._$implement = function (_$$Interface) {
+        var _pro = this.prototype,
+            _toAdd = _$$Interface.prototype;
+        
+        for(var _i in _toAdd) {
+            if(!_pro[_i])
+                _pro[_i] = _toAdd[_i];
+        }
+    };
 })
