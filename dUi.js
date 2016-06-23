@@ -27,7 +27,7 @@ define([
      **/
     _pro.__reset = function (_opts) {
         this.__super(_opts);
-        _u._$merge(this.__data, _opts.data||{});
+        this.___data = _u._$merge({}, this.__data, _opts.data||{});
         this.__jst = _opts.jst || this.__jst;
         this.__jstSeed = _jst._$add(this.__jst);
         this.__exts = _opts.exts || this.__exts;
@@ -35,13 +35,13 @@ define([
     };
     
     _pro._$setData = function (_o) {
-        _u._$merge(this.__data, _o);
+        _u._$merge(this.___data, _o);
         this.__repaint();
     };
     
     _pro.__repaint = function () {
         this.__onBeforeRepaint();
-        this.__body.innerHTML = _jst._$get(this.__jstSeed, this.__data, this.__exts);
+        this.__body.innerHTML = _jst._$get(this.__jstSeed, this.___data, this.__exts);
         this._$dispatchEvent('onafterpaint');
     };
     
@@ -91,6 +91,11 @@ define([
             }
         }
         
+    };
+    
+    _pro.__destroy = function () {
+        this.__super();
+        delete this.___data;
     };
       
     _p._$$Ui = _ui._$$Ui._$getSub(_pro);

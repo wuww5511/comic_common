@@ -30,6 +30,7 @@ define([
     
     var _$$Demo = _p._$$Ui = _ui._$$Ui._$getSub(_pro);
     
+    window.test = _$$Demo._$allocate();
     /*window.test = _$$Demo._$allocate({
         
         clazz: "body"
