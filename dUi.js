@@ -30,7 +30,7 @@ define([
         this.___data = _u._$merge({}, this.__data, _opts.data||{});
         this.__jst = _opts.jst || this.__jst;
         this.__jstSeed = _jst._$add(this.__jst);
-        this.__exts = _opts.exts || this.__exts;
+        this.___exts = _opts.exts || this.__exts;
         this.__repaint();
     };
     
@@ -39,9 +39,13 @@ define([
         this.__repaint();
     };
     
+    _pro._$getData = function () {
+        return this.___data;
+    };
+    
     _pro.__repaint = function () {
         this.__onBeforeRepaint();
-        this.__body.innerHTML = _jst._$get(this.__jstSeed, this.___data, this.__exts);
+        this.__body.innerHTML = _jst._$get(this.__jstSeed, this.___data, this.___exts);
         this._$dispatchEvent('onafterpaint');
     };
     
