@@ -15,10 +15,10 @@ define([
         this.__inner = _opts.inner || this.__inner;
         this.__iopts = {};
         
-        if(this.__inner.clazz) {
+        if(this.__inner.klass) {
             this.__iopts = this.__inner;
-            this.__inner = this.__iopts.clazz;
-            delete this.__iopts.clazz;
+            this.__inner = this.__iopts.klass;
+            delete this.__iopts.klass;
         }
         
         if(typeof this.__inner === 'string') {
