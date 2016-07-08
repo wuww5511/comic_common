@@ -31,12 +31,13 @@ define([
         this.__jst = _opts.jst || this.__jst;
         this.__jstSeed = _jst._$add(this.__jst);
         this.___exts = _opts.exts || this.__exts;
+        this.___repaintHandle = null;
         this.__repaint();
     };
     
     _pro._$setData = function (_o) {
         _u._$merge(this.___data, _o);
-        this.__repaint();
+        this.__delayRepaint(); 
     };
     
     _pro._$getData = function () {
@@ -80,6 +81,14 @@ define([
                 ]);
             }
         }
+    };
+    
+    _pro.__delayRepaint = function () {
+        if(this.___repaintHandle) return;
+        this.___repaintHandle = setTimeout(function () {
+            this.__repaint();
+            this.___repaintHandle = null;
+        }._$bind(this));
     };
     
     //从一个DOM节点开始搜索其所有子节点

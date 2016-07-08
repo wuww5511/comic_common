@@ -7,7 +7,9 @@ define([
    _pro.__jst = _html;
     
     _pro.__data = {
-        value: "test1"
+        value: "test1",
+        a: 'a',
+        b: 'b'
     };
     
     _pro.__bd = document.getElementById('container');
@@ -21,18 +23,15 @@ define([
     _pro.__repaint = function () {
         this.__super();
         this.__bindEvent();
+        console.log('repaint')
     };
     
     _pro.__a = function (_opts) {
-        //console.log(_opts.event.currentTarget.className);
         this._$recycle();
     };
     
     var _$$Demo = _p._$$Ui = _ui._$$Ui._$getSub(_pro);
     
     window.test = _$$Demo._$allocate();
-    /*window.test = _$$Demo._$allocate({
-        
-        clazz: "body"
-    })*/
+    
 })
