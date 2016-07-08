@@ -30,7 +30,7 @@ define([
         this.___data = _u._$merge({}, this.__data, _opts.data||{});
         this.__jst = _opts.jst || this.__jst;
         this.__jstSeed = _jst._$add(this.__jst);
-        this.___exts = _opts.exts || this.__exts;
+        this.___exts = _u._$merge({}, this.__exts, _opts.exts||{});
         this.___repaintHandle = null;
         this.__repaint();
     };

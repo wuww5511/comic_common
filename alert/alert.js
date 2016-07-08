@@ -12,7 +12,7 @@ define([
     _pro.__reset = function (_opts) {
         this.__super(_opts);
         this.__pos = new _pos._$$Widget(this);
-        this.___inner = _opts.inner || this.__inner;
+        this.___inner = _u._$merge({}, this.__inner, _opts.inner||{});
         this.__iopts = {};
         
         if(this.___inner.klass) {
