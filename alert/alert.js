@@ -12,18 +12,18 @@ define([
     _pro.__reset = function (_opts) {
         this.__super(_opts);
         this.__pos = new _pos._$$Widget(this);
-        this.__inner = _opts.inner || this.__inner;
+        this.___inner = _opts.inner || this.__inner;
         this.__iopts = {};
         
-        if(this.__inner.klass) {
-            this.__iopts = this.__inner;
-            this.__inner = this.__iopts.klass;
+        if(this.___inner.klass) {
+            this.__iopts = this.___inner;
+            this.___inner = this.__iopts.klass;
             delete this.__iopts.klass;
         }
         
-        if(typeof this.__inner === 'string') {
-            this.__inner = _ui._$$Ui._$getSub({
-                __html: this.__inner
+        if(typeof this.___inner === 'string') {
+            this.___inner = _ui._$$Ui._$getSub({
+                __html: this.___inner
             });
         }
         
@@ -35,7 +35,7 @@ define([
             }._$bind(this)
         });
         
-        this.__view = this.__inner._$allocate(this.__iopts);
+        this.__view = this.___inner._$allocate(this.__iopts);
 
         this.__alert = this.__view._$getBody();
         
@@ -76,7 +76,7 @@ define([
         this.__pos._$destroy();
         delete this.__pos;
         delete this.__iopts;
-        delete this.__inner;
+        delete this.___inner;
         delete this.__view;
         delete this.__alert;
     };
