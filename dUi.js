@@ -35,9 +35,13 @@ define([
         this.__repaint();
     };
     
-    _pro._$setData = function (_o) {
+    _pro._$setData = function (_o, _noDelay) {
         _u._$merge(this.___data, _o);
-        this.__delayRepaint(); 
+        if(_noDelay) {
+            this.__repaint();
+        }
+        else
+            this.__delayRepaint(); 
     };
     
     _pro._$getData = function () {
