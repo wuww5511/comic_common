@@ -61,6 +61,13 @@ define([
             
             _validate();
         });
+        
+        it("默认初始化", function () {
+            _ins = _$$Alert._$allocate({
+            });
+            
+            _validate();
+        });
     });
     
     describe("Alert类测试:初始化(__inner:类)", function () {
@@ -114,6 +121,13 @@ define([
                 inner: {
                     klass: _ui._$$Ui
                 }
+            });
+            
+            _validate();
+        });
+        
+        it("默认初始化", function () {
+            _ins = _$$Alert._$allocate({
             });
             
             _validate();
@@ -177,6 +191,13 @@ define([
             
             _validate();
         });
+        
+        it("默认初始化", function () {
+            _ins = _$$Alert._$allocate({
+            });
+            
+            _validate();
+        });
     });
     
     describe("Alert类测试:初始化(__inner:对象:klass:类)", function () {
@@ -236,6 +257,13 @@ define([
             
             _validate();
         });
+        
+        it("默认初始化", function () {
+            _ins = _$$Alert._$allocate({
+            });
+            
+            _validate();
+        });
     });
     
     describe("Alert类测试:初始化:__inner:undefined", function () {
@@ -289,6 +317,7 @@ define([
             
             _validate();
         });
+        
     });
     
     describe("Alert测试:居中测试", function () {

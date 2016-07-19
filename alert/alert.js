@@ -15,15 +15,16 @@ define([
         
         var _pInner = this.__inner;
         if(typeof _pInner !== 'object') {
-            _pInner = {
-                klass: this.__inner
-            };
+            _pInner = {};
+            if(this.__inner) _pInner.klass = this.__inner;
         }
         
         if(typeof _opts.inner !== 'object') {
-            _opts.inner = {
-                klass: _opts.inner
-            };
+            var _tmp = _opts.inner;
+            _opts.inner = {};
+            if(_tmp) {
+                _opts.inner.klass = _tmp;
+            }
         }
         
         this.__iopts = _u._$merge({}, _pInner, _opts.inner||{});
