@@ -6,14 +6,245 @@ define([
     
     chai.should();
     
-    describe("Alert类测试:初始化", function () {
+    describe("Alert类测试:初始化(__inner:字符串)", function () {
+        
+        var _$$Alert = _alert._$$Alert._$getSub({
+           __inner: _view 
+        });
         
         var _ins = null;
         
         function _validate () {
             _ins.__isLe(_ins.__body, document.body).should.be.true; 
             _ins.__isLe(_ins.__alert, _ins.__body).should.be.true;
-            _ins.__view.should.be.an.instanceof(_ins.__inner);
+        }
+        
+        afterEach(function () {
+            _ins._$close();
+            _ins = null;
+        });
+        
+        it("通过字符串初始化", function () {
+            _ins = _$$Alert._$allocate({
+                inner: _view
+            });
+            
+            _validate();
+            
+            
+        });
+        
+        it("通过UI类初始化", function () {
+            _ins = _$$Alert._$allocate({
+                inner: _ui._$$Ui
+            });
+            
+            _validate();
+        });
+        
+        it("通过对象初始化:字符串", function () {
+            _ins = _$$Alert._$allocate({
+                inner: {
+                    klass: _view
+                }
+            });
+            
+            _validate();
+        });
+        
+        it("通过对象初始化:UI类", function () {
+            _ins = _$$Alert._$allocate({
+                inner: {
+                    klass: _ui._$$Ui
+                }
+            });
+            
+            _validate();
+        });
+    });
+    
+    describe("Alert类测试:初始化(__inner:类)", function () {
+        
+        var _$$Alert = _alert._$$Alert._$getSub({
+           __inner: _ui._$$Ui 
+        });
+        
+        var _ins = null;
+        
+        function _validate () {
+            _ins.__isLe(_ins.__body, document.body).should.be.true; 
+            _ins.__isLe(_ins.__alert, _ins.__body).should.be.true;
+        }
+        
+        afterEach(function () {
+            _ins._$close();
+            _ins = null;
+        });
+        
+        it("通过字符串初始化", function () {
+            _ins = _$$Alert._$allocate({
+                inner: _view
+            });
+            
+            _validate();
+            
+            
+        });
+        
+        it("通过UI类初始化", function () {
+            _ins = _$$Alert._$allocate({
+                inner: _ui._$$Ui
+            });
+            
+            _validate();
+        });
+        
+        it("通过对象初始化:字符串", function () {
+            _ins = _$$Alert._$allocate({
+                inner: {
+                    klass: _view
+                }
+            });
+            
+            _validate();
+        });
+        
+        it("通过对象初始化:UI类", function () {
+            _ins = _$$Alert._$allocate({
+                inner: {
+                    klass: _ui._$$Ui
+                }
+            });
+            
+            _validate();
+        });
+    });
+    
+    describe("Alert类测试:初始化(__inner:对象:klass:字符串)", function () {
+        
+        var _$$Alert = _alert._$$Alert._$getSub({
+           __inner: {
+               klass: _view
+           } 
+        });
+        
+        var _ins = null;
+        
+        function _validate () {
+            _ins.__isLe(_ins.__body, document.body).should.be.true; 
+            _ins.__isLe(_ins.__alert, _ins.__body).should.be.true;
+        }
+        
+        afterEach(function () {
+            _ins._$close();
+            _ins = null;
+        });
+        
+        it("通过字符串初始化", function () {
+            _ins = _$$Alert._$allocate({
+                inner: _view
+            });
+            
+            _validate();
+            
+            
+        });
+        
+        it("通过UI类初始化", function () {
+            _ins = _$$Alert._$allocate({
+                inner: _ui._$$Ui
+            });
+            
+            _validate();
+        });
+        
+        it("通过对象初始化:字符串", function () {
+            _ins = _$$Alert._$allocate({
+                inner: {
+                    klass: _view
+                }
+            });
+            
+            _validate();
+        });
+        
+        it("通过对象初始化:UI类", function () {
+            _ins = _$$Alert._$allocate({
+                inner: {
+                    klass: _ui._$$Ui
+                }
+            });
+            
+            _validate();
+        });
+    });
+    
+    describe("Alert类测试:初始化(__inner:对象:klass:类)", function () {
+        
+        var _$$Alert = _alert._$$Alert._$getSub({
+           __inner: {
+               klass: _ui._$$Ui
+           } 
+        });
+        
+        var _ins = null;
+        
+        function _validate () {
+            _ins.__isLe(_ins.__body, document.body).should.be.true; 
+            _ins.__isLe(_ins.__alert, _ins.__body).should.be.true;
+        }
+        
+        afterEach(function () {
+            _ins._$close();
+            _ins = null;
+        });
+        
+        it("通过字符串初始化", function () {
+            _ins = _$$Alert._$allocate({
+                inner: _view
+            });
+            
+            _validate();
+            
+            
+        });
+        
+        it("通过UI类初始化", function () {
+            _ins = _$$Alert._$allocate({
+                inner: _ui._$$Ui
+            });
+            
+            _validate();
+        });
+        
+        it("通过对象初始化:字符串", function () {
+            _ins = _$$Alert._$allocate({
+                inner: {
+                    klass: _view
+                }
+            });
+            
+            _validate();
+        });
+        
+        it("通过对象初始化:UI类", function () {
+            _ins = _$$Alert._$allocate({
+                inner: {
+                    klass: _ui._$$Ui
+                }
+            });
+            
+            _validate();
+        });
+    });
+    
+    describe("Alert类测试:初始化:__inner:undefined", function () {
+        
+        var _ins = null;
+        
+        function _validate () {
+            _ins.__isLe(_ins.__body, document.body).should.be.true; 
+            _ins.__isLe(_ins.__alert, _ins.__body).should.be.true;
         }
         
         afterEach(function () {
@@ -42,7 +273,7 @@ define([
         it("通过对象初始化:字符串", function () {
             _ins = _alert._$$Alert._$allocate({
                 inner: {
-                    clazz: _view
+                    klass: _view
                 }
             });
             
@@ -52,7 +283,7 @@ define([
         it("通过对象初始化:UI类", function () {
             _ins = _alert._$$Alert._$allocate({
                 inner: {
-                    clazz: _ui._$$Ui
+                    klass: _ui._$$Ui
                 }
             });
             
@@ -80,7 +311,7 @@ define([
         beforeEach(function () {
             _ins = _alert._$$Alert._$allocate({
                 inner: {
-                    clazz: _ui._$$Ui
+                    klass: _ui._$$Ui
                 }
             });
         });
@@ -102,7 +333,7 @@ define([
         beforeEach(function () {
             _ins = _alert._$$Alert._$allocate({
                 inner: {
-                    clazz: _ui._$$Ui,
+                    klass: _ui._$$Ui,
                     ontest: function (_o, _val) {
                         _o.value = _val;
                     }

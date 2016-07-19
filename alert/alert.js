@@ -12,14 +12,26 @@ define([
     _pro.__reset = function (_opts) {
         this.__super(_opts);
         this.__pos = new _pos._$$Widget(this);
-        this.___inner = _u._$merge({}, this.__inner, _opts.inner||{});
-        this.__iopts = {};
         
-        if(this.___inner.klass) {
-            this.__iopts = this.___inner;
-            this.___inner = this.__iopts.klass;
-            delete this.__iopts.klass;
+        var _pInner = this.__inner;
+        if(typeof _pInner !== 'object') {
+            _pInner = {
+                klass: this.__inner
+            };
         }
+        
+        if(typeof _opts.inner !== 'object') {
+            _opts.inner = {
+                klass: _opts.inner
+            };
+        }
+        
+        this.__iopts = _u._$merge({}, _pInner, _opts.inner||{});
+        
+        this.___inner = this.__iopts.klass;
+        
+        delete this.__iopts.klass;
+        
         
         if(typeof this.___inner === 'string') {
             this.___inner = _ui._$$Ui._$getSub({
