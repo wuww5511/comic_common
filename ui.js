@@ -234,6 +234,17 @@ define([
 
 
     _p._$$Ui = _ui._$$Abstract._$getSub(_pro);
+    
+    /**
+     *  生成绑定节点_node的UI类对象。即生成的UI类对象的__body为_node
+     */
+    _p._$$Ui._$doWithNode = function (_node, _opts) {
+        var _klass = _p._$$Ui._$getSub({
+            __bd: _node
+        });
+        
+        return _klass._$allocate(_opts);
+    };
 
 
     return _p;
