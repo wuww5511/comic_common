@@ -28,8 +28,8 @@ define([
     _pro.__reset = function (_opts) {
         this.__super(_opts);
         this.___data = _u._$merge({}, this.__data, _opts.data||{});
-        this.__jst = _opts.jst || this.__jst;
-        this.__jstSeed = _jst._$add(this.__jst);
+        this.___jst = _opts.jst || this.__jst;
+        this.__jstSeed = _jst._$add(this.___jst);
         this.___exts = _u._$merge({}, this.__exts, _opts.exts||{});
         this.___repaintHandle = null;
         this.__repaint();
@@ -113,6 +113,8 @@ define([
     _pro.__destroy = function () {
         this.__super();
         delete this.___data;
+        delete this.___jst;
+        delete this.___exts;
     };
       
     _p._$$Ui = _ui._$$Ui._$getSub(_pro);
