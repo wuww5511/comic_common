@@ -239,7 +239,7 @@ define([
      *  生成绑定节点_node的UI类对象。即生成的UI类对象的__body为_node
      */
     _p._$$Ui._$doWithNode = function (_node, _opts) {
-        var _klass = _p._$$Ui._$getSub({
+        var _klass = this._$getSub({
             __bd: _node
         });
         
