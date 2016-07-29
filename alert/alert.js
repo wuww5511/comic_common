@@ -45,7 +45,8 @@ define([
             data: _opts.data,
             onbeforedestroy: function () {
                 this._$recycle();
-            }._$bind(this)
+            }._$bind(this),
+            alert: this
         });
         
         this.__view = this.___inner._$allocate(this.__iopts);
