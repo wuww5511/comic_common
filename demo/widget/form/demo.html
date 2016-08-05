@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Demo For Form</title>
+</head>
+<body>
+  <form class="js-form">
+      <input type="text" data-validate="  minlength:5  maxlength:10 reg:^\d+$  " class="js-form-ele" name="test1" value="   2123455   ">
+      <input type="text" data-validate="minlength:5 maxlength:10 reg:^\d+$" class="js-form-ele" name="test2" value="0123456">
+      <input type="text" data-validate="minlength:1 maxlength:10 reg:abc" class="js-form-ele" name="test3" value="0abcf12">
+      <input type="text" data-validate="minlength:5 maxlength:30 reg:^\d+$" class="js-form-ele" name="test4" value="0123456789123123">
+      <input type="text" data-validate="minlength:5 maxlength:10 reg:^\d+$" class="js-form-ele" name="test5" value="12312">
+  </form>
+  <button data-click="onValidate">提交</button>
+   <script src="/bower_components/nej/src/define.js?pro=/"></script>
+    <script src="demo.js"></script>
+</body>
+</html>
