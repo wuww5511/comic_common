@@ -137,7 +137,7 @@ define([
     };
     
     _pro.__stepAction = function (_data) {
-        
+        //子类实现
     };
     
     _pro.__destroy = function () {
