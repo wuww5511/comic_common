@@ -23,6 +23,7 @@
   "dependencies": {},
   "devDependencies": {
     "nej": "~0.2.6",
-    "jasmine-core": "jasmine#~2.4.1"
+    "jasmine-core": "jasmine#~2.4.1",
+    "react": "^15.3.0"
   }
 }
