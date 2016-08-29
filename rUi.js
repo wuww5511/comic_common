@@ -31,7 +31,7 @@ define([
     
     p._$$Ui._$render = function (parent, opts) {
         opts = opts || {};
-        ReactDOM.render(React.createElement(this, opts), parent);
+        return ReactDOM.render(React.createElement(this, opts), parent);
     };
     
     p._$$Ui.__data = {};
