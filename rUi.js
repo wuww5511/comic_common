@@ -1,7 +1,3 @@
-/**
- *  为什么要用react(现在的项目中有哪些不好的地方，react能做什么)
- *  react怎么嵌入到nej中（编译、类封装）
- **/
 define([
     './extend.js'
     'base/util',
@@ -16,10 +12,19 @@ define([
             
         });
         this.state = u._$merge({}, this.constructor.__data);
+        this.__reset();
+    };
+    
+    pro.__reset = function () {
+        
+    };
+    
+    pro.__render = function () {
+        
     };
     
     pro.render = function () {
-        
+        return this.__render();
     };
     
     p._$$Ui = React.Component._$getSub(pro);
