@@ -1,17 +1,15 @@
 define([
-    './extend.js'
-    'base/util',
-    './widget/event/proxy.js'
-], function (extend, u, proxy, p) {
+    './extend.js',
+    'base/util'
+], function (extend, u, p) {
     
     var pro = {};
     
     pro.__init = function (props, context, updater) {
         React.Component.call(this, props, context, updater);
-        this.__eventProxy = proxy._$$Proxy._$allocate({
-            
-        });
-        this.state = u._$merge({}, this.constructor.__data);
+        var data = props.data || {};
+        this.state = u._$merge({}, this.constructor.__data, data);
+        this.__parent = props.parent || null;
         this.__reset();
     };
     
