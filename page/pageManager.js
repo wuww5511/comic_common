@@ -66,11 +66,14 @@ define([
             next: index
         };
         
+        this.__makePagePreload(index, opts);
+        
         if(this.__pageIndex !== null) {
             this.__isSwitching = true;
             this.__pageIns[this.__pageIndex]._$pageOut(opts);
         }
         else{
+            
             this.__makePageIn(index, opts);
         }
     };                                             
@@ -97,6 +100,15 @@ define([
     pro.__makePageIn = function (index, opts) {
        
         var page = this.__pageIns[index];
+            
+        page._$pageIn(opts);
+        
+        this.__pageIndex = index;
+    };
+    
+    pro.__makePagePreload = function (index, opts) {
+        
+        var page = this.__pageIns[index];
         
         if(!page) {
             page = this.__pages[index]._$allocate({
@@ -107,10 +119,8 @@ define([
             this.__pageIns[index] = page;
         }
             
-        page._$pageIn(opts);
+        page._$preload(opts);
         
-        
-        this.__pageIndex = index;
     };
     
                                                  

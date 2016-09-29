@@ -17,7 +17,7 @@ define([
         this.__manager = opts.manager;
     };
     
-    pro._$preload = function () {
+    pro._$preload = function (opts) {
         
     };
     
