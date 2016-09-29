@@ -2,7 +2,6 @@ define([
     "base/klass", "../ui.js"
 ], function (k, ui, p) {
     
-
     p._$$Page = k._$klass();
     
     var pro = p._$$Page._$extend(ui._$$Ui);
@@ -18,15 +17,17 @@ define([
         this.__manager = opts.manager;
     };
     
+    pro._$preload = function () {
+        
+    };
     
-    
-    pro._$onPageIn = function (opts) {
-        this.__doPageIn();
+    pro._$pageIn = function (opts) {
+        this.__doPageIn(opts);
         this.__manager._$dispatchEvent('onPageIn', opts);
     };                                             
     
 
-    pro._$onPageOut = function (opts) {
+    pro._$pageOut = function (opts) {
         this.__doPageOut(this.___toNextPage._$bind(this, opts), opts);
     };                                             
     
@@ -49,7 +50,6 @@ define([
     
     pro.___toNextPage = function (opts) {
         this.__manager._$dispatchEvent('onPrepageOut', opts);
-        this._$recycle();
     };
     
                                                  

@@ -25,8 +25,7 @@ define([
         //当前页序号
         this.__pageIndex = null;
         
-        //当前页面实例
-        this.__nowPage = null;
+        this.__isSwitching = false;
         
         if(opts.pager) {
             var popts = util._$merge({}, opts.pager);
@@ -45,6 +44,9 @@ define([
          */
         this.__pages = opts.pages;
         
+        //已经实例化的页面对象
+        this.__pageIns = {};
+        
        
         this._$addEvent('onPrepageOut', this.__onPrepageOut._$bind(this));
         this._$addEvent('onPageIn', this.__onPageIn._$bind(this));
@@ -57,13 +59,16 @@ define([
         if(index < 0 || index >= this.__pages.length)
             return;
         
+        if(this.__isSwitching) return;
+        
         var opts = {
             pre: this.__pageIndex,
             next: index
         };
         
-        if(this.__nowPage) {
-            this.__nowPage._$onPageOut(opts);
+        if(this.__pageIndex !== null) {
+            this.__isSwitching = true;
+            this.__pageIns[this.__pageIndex]._$pageOut(opts);
         }
         else{
             this.__makePageIn(index, opts);
@@ -82,6 +87,7 @@ define([
     
     pro.__onPrepageOut = function (opts) {
         this.__makePageIn(opts.next, opts);
+        this.__isSwitching = false;
     };
     
     pro.__onPageIn = function (opts) {
@@ -89,14 +95,20 @@ define([
     };
     
     pro.__makePageIn = function (index, opts) {
-        var page = this.__pages[index]._$allocate({
-            manager: this,
-            parent: this.__pbox
-        });
-            
-        page._$onPageIn(opts);
+       
+        var page = this.__pageIns[index];
         
-        this.__nowPage = page;
+        if(!page) {
+            page = this.__pages[index]._$allocate({
+                manager: this,
+                parent: this.__pbox
+            });
+            
+            this.__pageIns[index] = page;
+        }
+            
+        page._$pageIn(opts);
+        
         
         this.__pageIndex = index;
     };
