@@ -19,7 +19,7 @@ define([
     };
     
     
-
+    
     pro._$onPageIn = function (opts) {
         this.__doPageIn();
         this.__manager._$dispatchEvent('onPageIn', opts);
@@ -27,9 +27,16 @@ define([
     
 
     pro._$onPageOut = function (opts) {
-        this.__doPageOut(this.__toNextPage._$bind(this, opts));
+        this.__doPageOut(this.___toNextPage._$bind(this, opts));
     };                                             
     
+    pro._$next = function () {
+        this.__manager._$next();
+    };
+    
+    pro._$pre = function () {
+        this.__manager._$pre();
+    };
 
     pro.__doPageOut = function (next) {
         next();
@@ -40,10 +47,11 @@ define([
         
     };
     
-    pro.__toNextPage = function (opts) {
+    pro.___toNextPage = function (opts) {
         this.__manager._$dispatchEvent('onPrepageOut', opts);
         this._$recycle();
     };
+    
                                                  
     
 });

@@ -2,8 +2,9 @@ define([
     '../../ui.js',
     '../../page/pageManager.js',
     './page1.js',
-    './pager.js'
-], function (ui, pm, page1, pager, p) {
+    './pager.js',
+    './page2.js'
+], function (ui, pm, page1, pager, page2, p) {
     
     var pro = {};
     
@@ -15,9 +16,10 @@ define([
         this.__pmi = pm._$$PageManager._$allocate({
             box: this.__el('box'),
             pager: {
-                klass: pager._$$Pager
+                klass: pager._$$Pager,
+                parent: this.__el("pager")
             },
-            pages: [page1._$$Page, page1._$$Page]
+            pages: [page1._$$Page, page2._$$Page, page1._$$Page, page2._$$Page, page1._$$Page]
         });
         
         this.__pmi._$turnTo(0);
