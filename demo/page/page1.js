@@ -11,8 +11,8 @@ define([
         this.__super(opts);
     };
     
-    pro.__doPageOut = function (next) {
-        console.log('page1 out');
+    pro.__doPageOut = function (next, opts) {
+        console.log('page1 out: %s to %s', opts.pre, opts.next);
         next();
     };
     

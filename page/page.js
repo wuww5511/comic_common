@@ -27,7 +27,7 @@ define([
     
 
     pro._$onPageOut = function (opts) {
-        this.__doPageOut(this.___toNextPage._$bind(this, opts));
+        this.__doPageOut(this.___toNextPage._$bind(this, opts), opts);
     };                                             
     
     pro._$next = function () {
@@ -38,7 +38,7 @@ define([
         this.__manager._$pre();
     };
 
-    pro.__doPageOut = function (next) {
+    pro.__doPageOut = function (next, opts) {
         next();
     };                                             
     
