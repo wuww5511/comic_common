@@ -27,18 +27,6 @@ define([
         
         this.__isSwitching = false;
         
-        if(opts.pager) {
-            var popts = util._$merge({}, opts.pager);
-            var pklass = popts.klass;
-            delete popts.klass;
-            
-            popts.manager = this;
-            
-            this.__pager = pklass._$allocate(popts);
-        }
-        else
-            this.__pager = null;
-        
         /*
          *管理的所有页面类
          */
@@ -46,6 +34,24 @@ define([
         
         //已经实例化的页面对象
         this.__pageIns = {};
+        
+        if(opts.pager) {
+            var popts = util._$merge({}, opts.pager);
+            var pklass = popts.klass;
+            delete popts.klass;
+            
+            popts.manager = this;
+            
+            popts.total = this.__pages.length;
+            
+            this.__pager = pklass._$allocate(popts);
+        }
+        else
+            this.__pager = null;
+        
+        
+        
+        
         
        
         this._$addEvent('onPrepageOut', this.__onPrepageOut._$bind(this));
