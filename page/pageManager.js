@@ -56,10 +56,18 @@ define([
 
     pro._$turnTo = function (index) {
         
+        index = +index;
+        
+        
+        //页面序号超出边界
         if(index < 0 || index >= this.__pages.length)
             return;
         
+        //页面切换操作尚未完成
         if(this.__isSwitching) return;
+        
+        //需要切换的页面与当前页相同
+        if(index === this.__pageIndex) return;
         
         var opts = {
             pre: this.__pageIndex,

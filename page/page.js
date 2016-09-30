@@ -18,7 +18,7 @@ define([
     };
     
     pro._$preload = function (opts) {
-        
+        this.__doPreload(opts);
     };
     
     pro._$pageIn = function (opts) {
@@ -44,7 +44,11 @@ define([
     };                                             
     
 
-    pro.__doPageIn = function () {
+    pro.__doPageIn = function (opts) {
+        
+    };
+    
+    pro.__doPreload = function (opts) {
         
     };
     

@@ -25,12 +25,9 @@ define([
         this.__pmi._$turnTo(0);
     };
     
-    pro.__onNext = function (opts) {
-        this.__pmi._$next();
-    };
-    
-    pro.__onPre = function (opts) {
-        this.__pmi._$pre();
+    pro.__onPage = function (opts) {
+        var index = +opts.args[0];
+        this.__pmi._$turnTo(index);
     };
     
     p._$$Ui = ui._$$Ui._$getSub(pro);
