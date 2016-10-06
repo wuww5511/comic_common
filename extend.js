@@ -28,4 +28,24 @@ define([
                 _pro[_i] = _toAdd[_i];
         }
     };
+    
+    /**
+     *  创建接口
+     *  @param {Array|String} 接口列表
+     *
+     **/
+    _p._$abstract = function (arr) {
+        
+        var interface = _k._$klass();
+        
+        for(var i = 0; i < arr.length; i++) {
+            interface.prototype[arr[i]] = action;
+        }
+        
+        function action () {
+            throw new Error("需要实现此接口");
+        }
+        
+        return interface;
+    };
 })
