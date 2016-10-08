@@ -15,4 +15,21 @@ define([], function (p) {
             return true;
         return this._$isChildOf(_target, _parent);
     };
+    
+    /**
+     *  使函数只执行一次
+     *  @param {Function}
+     *  @return {Function}
+     */
+    p._$once = function (fn) {
+        var isDone = false;
+        
+        var res = function () {
+            if(isDone) return;
+            fn.apply(this, arguments);
+            isDone = true;
+        };
+        
+        return res;
+    };
 });
