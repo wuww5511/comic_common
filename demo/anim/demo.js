@@ -15,9 +15,10 @@ define([
                 ['easeout', 1000, {top: 400, left: 200}, {top: 100,left: 400}],
                 ['easeout', 2000, {top: 100, left: 400}, {top: 0, left: 0}]
             ],
-            onstep: function (_data) {
+            onstep: function (_data, _index) {
                 this.__el('box').style.top = _data.top + "px";
                 this.__el('box').style.left = _data.left + "px";
+                this.__el('box').innerHTML = _index;
             }._$bind(this),
             onstop: function () {
                 console.log('动画结束了!');

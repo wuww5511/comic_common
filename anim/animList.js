@@ -94,9 +94,9 @@ define([
                 _data[_i] = _from[_i];
         }
         
-        this.__stepAction();
+        this.__stepAction(_data, _index);
         
-        this._$dispatchEvent('onstep', _data);
+        this._$dispatchEvent('onstep', _data, _index);
     };
     
     _pro.__playNext = function () {
