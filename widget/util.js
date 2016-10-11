@@ -33,7 +33,6 @@ define([], function (p) {
         return res;
     };
     
-    //批量操作数组项
     p._$each = function (arr, action) {
         for(var i = 0; i < arr.length; i++) {
             if(typeof action === 'function') {
@@ -42,20 +41,5 @@ define([], function (p) {
             else
                 arr[i][action].apply(arr[i], [].slice.call(arguments, 2));
         }
-    };
-    
-    p._$interval = function (fn, time) {
-        var isReady = true;
-        return function () {
-            if(isReady) {
-                fn.apply(this, arguments);
-                isReady = false;
-                setTimeout(function () {
-                    isReady = true;
-                }, time);
-            }
-            else
-                return;
-        };
     };
 });
