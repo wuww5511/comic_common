@@ -32,4 +32,14 @@ define([], function (p) {
         
         return res;
     };
+    
+    p._$each = function (arr, action) {
+        for(var i = 0; i < arr.length; i++) {
+            if(typeof action === 'function') {
+                action(arr[i]);
+            }
+            else
+                arr[i][action].apply(arr[i], [].slice.call(arguments, 2));
+        }
+    };
 });

@@ -1,14 +1,15 @@
 define([
     '../../ui.js',
-    '../../anim/animList.js'
-], function (_ui, _al, _p) {
+    '../../anim/animList.js',
+    '../../anim/animParallel.js'
+], function (_ui, _al, ap, _p) {
     
     var _pro = {};
     
     _pro.__reset = function (_opts) {
         this.__super(_opts);
-        var _a = _al._$$AnimList._$allocate({
-            ifinite: true,
+        var _a1 = _al._$$AnimList._$allocate({
+            //ifinite: true,
             list: [
                 ['easeout', 1000, {top: 0, left: 0}, {top:  100, left: 100}],
                 ['easein', 3000, {top: 100, left: 100}, {top: 400,left: 200}],
@@ -18,20 +19,33 @@ define([
             onstep: function (_data, _index) {
                 this.__el('box').style.top = _data.top + "px";
                 this.__el('box').style.left = _data.left + "px";
-                this.__el('box').innerHTML = _index;
             }._$bind(this),
             onstop: function () {
-                console.log('动画结束了!');
+                //console.log('动画结束了!');
             },
             onstepend: function (_index) {
-                console.log('动画' + _index + "结束了!");
+                //console.log('动画' + _index + "结束了!");
             }
         });
-        _a._$play();
         
-        setTimeout(function () {
-            _a._$stop();
-        }, 10000)
+        var a2 = _al._$$AnimList._$allocate({
+            //ifinite: true,
+            list: [
+                ['easein', 5000, {index: 0}, {index: 1000}]
+            ],
+            onstep: function (data, index) {
+                this.__el('box').innerHTML = data.index;
+            }._$bind(this)
+        });
+        
+        var api = ap._$$Anim._$allocate({
+            anims: [_a1, a2]
+        });
+        
+        api._$play(function () {
+            console.log('end');
+        });
+        
     };
     
     _p._$$Ui = _ui._$$Ui._$getSub(_pro);
