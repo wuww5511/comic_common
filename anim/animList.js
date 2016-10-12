@@ -52,6 +52,7 @@ define([
         this.__list = _opts.list || [];
         this.__aList = null;
         this.__now = null;
+        this.__isPlaying = false;
         
         if(_opts.ifinite)
             this._$addEvent('onstop', function () {
@@ -60,6 +61,10 @@ define([
     };
     
     _pro._$play = function () {
+        
+        if(this.__isPlaying) return;
+        this.__isPlaying = true;
+        
         this.__aList = [];
         for(var _i = 0; _i < this.__list.length; _i++) {
             this.__aList.push(
@@ -76,6 +81,8 @@ define([
         this.__alist = [];
         this.__now && this.__now._$recycle();
         this.__now = null;
+        
+        this.__isPlaying = false;
     };
     
     _pro.__onItemEnd = function (_animation) {
@@ -101,6 +108,8 @@ define([
     
     _pro.__playNext = function () {
         if(!this.__playOne()) {
+            this.__now = null;
+            this.__isPlaying = false;
             this._$dispatchEvent('onstop');
         }
     };

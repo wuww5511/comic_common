@@ -38,13 +38,20 @@ define([
             }._$bind(this)
         });
         
-        var api = ap._$$Anim._$allocate({
+        _a1._$play();
+        
+        setTimeout(function () {
+            _a1._$play();
+        }, 1000);
+        
+        
+        /*var api = ap._$$Anim._$allocate({
             anims: [_a1, a2]
         });
         
         api._$play(function () {
             console.log('end');
-        });
+        });*/
         
     };
     
