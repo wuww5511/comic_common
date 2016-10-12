@@ -71,14 +71,15 @@ define([
     
     _pro._$stop = function () {
         for(var _i = 0; _i < this.__alist; _i++) {
-            this.__alist[_i]._$stop();
+            this.__alist[_i]._$recycle();
         }
         this.__alist = [];
-        this.__now && this.__now._$stop();
+        this.__now && this.__now._$recycle();
         this.__now = null;
     };
     
     _pro.__onItemEnd = function (_animation) {
+        _animation._$recycle();
         this.__playNext();
     };
     
