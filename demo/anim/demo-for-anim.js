@@ -22,7 +22,9 @@ define([
         
         this.__anim._$play(function () {
             console.log('out');
-        });
+            this.__anim._$stop();
+            this.__anim._$stop();
+        }._$bind(this));
         this.__anim._$play(function () {
             console.log('out2');
         });

@@ -23,8 +23,10 @@ define([
         this.__doPlay();
     };
     
+    /**
+     *  将动画定格在最后一帧
+     */
     pro._$stop = function () {
-        if(!this.__isPlaying) return;
         this.__doStop();
         this.__onForcedEnd();
     };

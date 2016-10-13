@@ -17,7 +17,10 @@ define([
         
         this.__anim._$play(function () {
             console.log('out');
-        });
+            this.__anim._$play(function () {
+                console.log('out2')
+            });
+        }._$bind(this));
         this.__anim._$play(function () {
             console.log('out2');
         });
