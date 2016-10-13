@@ -24,6 +24,7 @@ define([
     };
     
     pro._$stop = function () {
+        if(!this.__isPlaying) return;
         this.__doStop();
         this.__onForcedEnd();
     };
