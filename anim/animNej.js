@@ -32,7 +32,7 @@ define([
     };
     
     pro.__doStop = function () {
-        this.__anim._$recycle();
+        this.__anim.__destroy();
         this.__anim = this.__getAnim();
         this.__doStep(this.__to);
     };
