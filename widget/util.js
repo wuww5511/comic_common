@@ -42,4 +42,14 @@ define([], function (p) {
                 arr[i][action].apply(arr[i], [].slice.call(arguments, 2));
         }
     };
+    
+    //通过str模板生成字符串
+    p._$string = function (str) {
+        var index = 1,
+            args = arguments;
+        
+        return str.replace(/%s/g, function () {
+            return args[index++];
+        });
+    };
 });
