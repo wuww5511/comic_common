@@ -19,7 +19,7 @@ define([
     };
     
     /**
-     *  @param {HTMLElement}  
+     *  @param {HTMLElement}  或者 {Array|HTMLElement}
      *  @param {Object} 或 {Array|Object}
      *      -   duration
      *      -   function
@@ -33,6 +33,10 @@ define([
         
         if(({}).toString.call(opts) !== '[object Array]') {
             opts = [opts];
+        }
+        
+        if(({}).toString.call(ele) !== '[object Array]') {
+            ele = [ele];
         }
         
         for(var i = 0; i < opts.length; i++) {
@@ -69,9 +73,9 @@ define([
                 }
                 else {
                     if(noPxs[i])
-                        ele.style[i] = data[i];
+                        style(ele, i, data[i]);
                     else
-                        ele.style[i] = data[i] + "px";
+                         style(ele, i, data[i] + "px");
                 }
             }
             
@@ -86,9 +90,9 @@ define([
                     (transfrom.scale||1)
                 );
                 for(var i = 0; i < prefix.length; i++) {
-                    ele.style[prefix[i] + "Transform"] = value;
+                    style(ele, prefix[i] + "Transform", value);
                 }
-                ele.style['transform'] = value;
+                style(ele, 'transform', value);
             }
             
             
@@ -100,6 +104,13 @@ define([
         
         function multiply (item) {
             return p._$multiply(this, item);
+        }
+        
+        function style (eles, key, value) {
+            
+            util._$forEach(eles, function (item) {
+                item.style[key] = value;
+            })
         }
     };
     

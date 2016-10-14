@@ -28,7 +28,7 @@ define([
             }
         }]);
         
-        var a2 = anim._$anim(this.__el('box1'), [{
+        var a2 = anim._$anim([this.__el('box1'), this.__el('box2')], [{
             from: {
                 opacity: 0,
                 translateX: 0,
