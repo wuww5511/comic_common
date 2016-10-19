@@ -30,7 +30,7 @@ define([
         
         var a2 = anim._$anim([this.__el('box1'), this.__el('box2')], [{
             from: {
-                opacity: 0,
+                opacity: 1,
                 translateX: 0,
                 scale: 0
             },
@@ -41,14 +41,22 @@ define([
             }
         }, {
             to: {
-                opacity: 0.5,
+                opacity: 1,
                 translateX: 300,
                 scale: 1,
-                function: "easeout"
+                func: "easeout"
             }
         }]);
         
-       a1._$multiply(a2)._$play();
+        var a3 = anim._$anim(this.__el('box'), {
+            from: {opacity: 1},
+            to: {opacity: 0},
+        });
+        
+        
+        a2._$play();
+        
+       //a1._$multiply(a2)._$play();
         
     };
     

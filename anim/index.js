@@ -90,7 +90,15 @@ define([
                     (transfrom.scale||1)
                 );
                 for(var i = 0; i < prefix.length; i++) {
-                    style(ele, prefix[i] + "Transform", value);
+                    if(util2._$isIe8()) {
+                        if(transfrom.translateX || transfrom.translateY) {
+                            style(ele, 'left', transfrom.translateX||0);
+                            style(ele, 'top', transfrom.translateY||0);
+                            
+                        }
+                    }
+                    else
+                        style(ele, prefix[i] + "Transform", value);
                 }
                 style(ele, 'transform', value);
             }
@@ -109,7 +117,11 @@ define([
         function style (eles, key, value) {
             
             util._$forEach(eles, function (item) {
-                item.style[key] = value;
+                if(key == 'opacity' && util2._$isIe8()) {
+                    item.style.filter = "progid:DXImageTransform.Microsoft.Alpha(opacity=" + value * 100 + ");";
+                }
+                else
+                    item.style[key] = value;
             })
         }
     };

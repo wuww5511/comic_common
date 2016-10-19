@@ -52,4 +52,16 @@ define([], function (p) {
             return args[index++];
         });
     };
+    
+    p._$isIe8 = (function () {
+        var result = null;
+        
+        return function () {
+            if(result === null) {
+                result = document.documentElement.className.indexOf('ie8') >= 0;
+            }
+            
+            return result;
+        };
+    })();
 });
