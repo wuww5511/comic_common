@@ -22,7 +22,7 @@ define([
      *  @param {HTMLElement}  或者 {Array|HTMLElement}
      *  @param {Object} 或 {Array|Object}
      *      -   duration
-     *      -   function
+     *      -   func
      *      -   from
      *      -   to
      *   
@@ -40,7 +40,7 @@ define([
         }
         
         for(var i = 0; i < opts.length; i++) {
-            var fn = opts[i].function || "easein",
+            var fn = opts[i].func || "easein",
                 duration = opts[i].duration || 1000;
             
             if(!opts[i].from)

@@ -127,7 +127,8 @@ define([
         if(!page) {
             page = this.__pages[index]._$allocate({
                 manager: this,
-                parent: this.__pbox
+                parent: this.__pbox,
+                index: index
             });
             
             this.__pageIns[index] = page;
