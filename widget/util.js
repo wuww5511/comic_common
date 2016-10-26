@@ -64,4 +64,26 @@ define([], function (p) {
             return result;
         };
     })();
+    
+    p._$delay = (function () {
+        
+        var delay = window.setTimeout;
+        
+        if(window.requestAnimationFrame) delay = window.requestAnimationFrame;
+        
+        return function (callback) {
+            return delay(callback);
+        };
+    })();
+    
+    p._$cancelDelay = (function () {
+        
+        var cancelDelay = window.clearTimeout;
+        
+        if(window.cancelAnimationFrame) cancelDelay = window.cancelAnimationFrame;
+        
+        return function (handle) {
+            cancelDelay(handle);
+        };
+    })();
 });
