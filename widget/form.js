@@ -1,7 +1,8 @@
 define([
     '../ui.js',
-    'base/element'
-], function (_ui, _e, _p) {
+    'base/element',
+    'base/util'
+], function (_ui, _e, _util, _p) {
     
     var _pro = {};
     
@@ -23,7 +24,8 @@ define([
      *      - error {Number} 如果验证不通过，记录不通过的表单项的验证条件序号
      */
     _pro._$validate = function () {
-        var _els = this.__els('form-ele', true);
+       
+        var _els = this.__getTextInputs();
         
         var _data = {};
         
@@ -42,6 +44,8 @@ define([
                 _data[_res.name] = _res.value;
             }
         }
+        
+        _util._$merge(_data, this.__getRadioData());
         
         return {
             status: true,
@@ -64,6 +68,8 @@ define([
         var _value = this.__trim(_node.value),
             _name = _node.name;
         
+        if(_node.type == 'checkbox') _value = '' + _node.checked;
+        
         var _res = {
             name: _name,
             value: _value
@@ -82,6 +88,48 @@ define([
         return _res;
     };
     
+    _pro.__getRadioData = function () {
+        var radios = this.__getRadios();
+        var res = {};
+        for(var i = 0; i < radios.length; i++) {
+            if(radios[i].checked) {
+                res[radios[i].name] = radios[i].value;
+            }
+        }
+        
+        return res;
+    };
+    
+    _pro.__getRadios = function () {
+        return this.__getInputs(function (node) {
+            if(node.name && node.type == 'radio') 
+                return true;
+            else
+                return false;
+        });
+    };
+        
+    _pro.__getTextInputs = function () {
+        return this.__getInputs(function (node) {
+            if(node.name && node.type != 'radio') 
+                return true;
+            else    
+                return false;
+        }); 
+    };
+    
+    _pro.__getInputs = function (filter) {
+        var _els = this.__body.getElementsByTagName('input');
+        
+        var res = [];
+        
+        for(var i = 0; i < _els.length; i++) {
+            if(filter(_els[i])) res.push(_els[i]);
+        }
+        
+        return res;
+    };
+    
     /**
      *  将验证表达式解析成验证数组，验证表达式的格式类似于 "minlength:1 maxlength:12 reg:^abcd$"
      *  @param 
@@ -90,6 +138,7 @@ define([
      *  @return {Array|Function}
      */
     _pro.__getValidateFuncs = function (_str) {
+        if(!_str) return [];
         var _res = [];
         _str = this.__trim(_str);
         var _itms = _str.split(/\s+/);

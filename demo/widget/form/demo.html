@@ -6,11 +6,17 @@
 </head>
 <body>
   <form class="js-form">
-      <input type="text" data-validate="  minlength:5  maxlength:10 reg:^\d+$  " class="js-form-ele" name="test1" value="   2123455   ">
+      <input type="text" data-validate="  minlength:5  maxlength:10 reg:^\d+$  " value="   2123455   ">
       <input type="text" data-validate="minlength:5 maxlength:10 reg:^\d+$" class="js-form-ele" name="test2" value="0123456">
-      <input type="text" data-validate="minlength:1 maxlength:10 reg:abc" class="js-form-ele" name="test3" value="0abcf12">
-      <input type="text" data-validate="minlength:5 maxlength:30 reg:^\d+$" class="js-form-ele" name="test4" value="0123456789123123">
-      <input type="text" data-validate="minlength:5 maxlength:10 reg:^\d+$" class="js-form-ele" name="test5" value="12312">
+      <input type="text" data-validate="minlength:1 maxlength:10 reg:abc" name="test3" value="0abcf12">
+      <input type="text"  class="js-form-ele" name="test4" value="0123456789123123">
+      <input type="text" data-validate="minlength:5 maxlength:10 reg:^\d+$"  name="test5" value="12312">
+      <input type="hidden" value="biubiu~" name="test6">
+      <input type="checkbox" name="text7" id="checkbox" data-validate="reg:false">
+      <input type="radio" name="r1" value="r1-1">
+      <input type="radio" name="r1" value="r1-2">
+      <input type="radio" name="r2" value="r2-1">
+      <input type="radio" name="r2" value="r2-2">
   </form>
   <button data-click="onValidate">提交</button>
    <script src="/bower_components/nej/src/define.js?pro=/"></script>
