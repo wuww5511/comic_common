@@ -32,8 +32,13 @@ define([
         this.___jst = _opts.jst || this.__jst;
         this.__jstSeed = _jst._$add(this.___jst);
         this.___exts = _u._$merge({}, this.__exts, _opts.exts||{});
+        this.__tickActions = [];
         this.___repaintHandle = null;
         this.__repaint();
+    };
+    
+    _pro._$nextTick = function (_cb) {
+        this.__tickActions.push(_cb);
     };
     
     _pro._$setData = function (_o, _noDelay) {
@@ -53,6 +58,11 @@ define([
     _pro.__repaint = function () {
         this.__onBeforeRepaint();
         this.__body.innerHTML = _jst._$get(this.__jstSeed, this.___data, this.___exts);
+        var _tickAction = this.__tickActions.shift();
+        while(_tickAction) {
+            _tickAction();
+            _tickAction = this.__tickActions.shift();
+        }
         this._$dispatchEvent('onafterpaint');
     };
     
