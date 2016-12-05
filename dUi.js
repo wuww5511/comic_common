@@ -2,8 +2,9 @@ define([
     './ui.js',
     'util/template/jst',
     'base/element',
-    'base/util'
-], function (_ui, _jst, _e, _u, _p) {
+    'base/util',
+    './widget/util.js'
+], function (_ui, _jst, _e, _u, _u2, _p) {
     
     var _pro = {};
     
@@ -38,6 +39,7 @@ define([
     _pro._$setData = function (_o, _noDelay) {
         _u._$merge(this.___data, _o);
         if(_noDelay) {
+            this.__cancelDelayRepaint();
             this.__repaint();
         }
         else
@@ -89,10 +91,15 @@ define([
     
     _pro.__delayRepaint = function () {
         if(this.___repaintHandle) return;
-        this.___repaintHandle = setTimeout(function () {
+        this.___repaintHandle = _u2._$delay(function () {
             this.__repaint();
             this.___repaintHandle = null;
         }._$bind(this));
+    };
+    
+    _pro.__cancelDelayRepaint = function () {
+        _u2._$cancelDelay(this.___repaintHandle);
+        this.___repaintHandle = null;
     };
     
     //从一个DOM节点开始搜索其所有子节点
