@@ -32,6 +32,7 @@ define([
         for(var _i = 0; _i < _els.length; _i++) {
             var _vFuncs = this.__getValidateFuncs(_e._$dataset(_els[_i], 'validate'));
             var _res = this.__validate(_els[_i], _vFuncs);
+            if (!_res) continue;
             if(!_res.status) {
                 return {
                     status: false,
@@ -65,13 +66,17 @@ define([
      *      - error {Number} 如果验证不通过，则记录不通过的验证条件的序号
      */
     _pro.__validate = function (_node, _vFuncs) {
-        var _value = this.__trim(_node.value),
-            _name = _node.name;
+        var _value = this.__filter(
+            this.__trim(_node.value || ""), 
+            _node
+        );
         
-        if(_node.type == 'checkbox') _value = '' + _node.checked;
+        if (!_node.name) return;
+        
+        if (_value === null) return;
         
         var _res = {
-            name: _name,
+            name: _node.name,
             value: _value
         };
         
@@ -88,12 +93,22 @@ define([
         return _res;
     };
     
+    /**
+     *  @return {Any} 返回处理后字段的值，如果为null，则不进行记录
+     */
+    _pro.__filter = function (value, node) {
+        return value;
+    };
+    
     _pro.__getRadioData = function () {
         var radios = this.__getRadios();
         var res = {};
         for(var i = 0; i < radios.length; i++) {
             if(radios[i].checked) {
-                res[radios[i].name] = radios[i].value;
+                res[radios[i].name] = this.__filter(
+                    _e._$dataset(radios[i], 'value'), 
+                    radios[i]
+                );
             }
         }
         
@@ -110,12 +125,18 @@ define([
     };
         
     _pro.__getTextInputs = function () {
-        return this.__getInputs(function (node) {
+        var ret = this.__getInputs(function (node) {
             if(node.name && node.type != 'radio') 
                 return true;
             else    
                 return false;
-        }); 
+        });
+        
+        var textareas = this.__body.getElementsByTagName('textarea');
+        for (var i = 0; i < textareas.length; i++) {
+            ret.push(textareas[i])
+        }
+        return ret;
     };
     
     _pro.__getInputs = function (filter) {
@@ -156,7 +177,14 @@ define([
             _fname = _arr[0],
             _astr = _arr[1];
         
-        return this["__" + _fname](_astr);   
+        var func = this["__" + _fname];
+        
+        if (func) {
+            return func(_astr);  
+        } else {
+            throw new Error('验证函数__' + _fname + '不存在');
+        }
+         
     };
     
     _pro.__maxlength = function (_num) {
