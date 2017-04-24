@@ -190,12 +190,30 @@ define([
         
     };
     
-    _pro.__trim = function (_str) {
-        var _reg = /^\s*(.*?)\s*$/;
-        if(_reg.test(_str)) {
-            return RegExp.$1;
+    _pro.__trim = function (str) {
+        var arr = str.split('');
+        var start = 0,
+            end = arr.length - 1;
+        
+        for (var i = 0; i< arr.length; i++) {
+            if (!/\s/.test(arr[i])) {
+                start = i;
+                break;
+            }
         }
-        return "";
+        
+        if (i === arr.length) return '';
+            
+        for(var i = arr.length - 1; i > start; i--) {
+            if (!/\s/.test(arr[i])) {
+                end = i;
+                break;
+            }
+        }
+        
+        if (i === start) end = start
+            
+        return arr.slice(start, end + 1).join('');
     };
     
     _p._$$Form = _ui._$$Ui._$getSub(_pro);
